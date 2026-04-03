@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
-import { AppSidebar } from './components/app-sidebar';
-import { AreaChartComponent } from './components/AreaChart';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/app-sidebar';
+import { AreaChartComponent } from '@/components/AreaChart';
 
-import { useRealtimeSimulation } from './hooks/useRealtimeSimulation';
+import { useRealtimeSimulation } from '@/hooks/useRealtimeSimulation';
 import { useDataStore } from '@/store/useDataStore';
 import { generateMockData, type DataPoint } from '@/lib/mockData';
 
