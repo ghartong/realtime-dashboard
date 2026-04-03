@@ -4,8 +4,6 @@
 
 A sleek, real-time data visualization dashboard built with modern React and TypeScript. Watch your metrics come alive with live updates, beautiful charts, and a responsive sidebar interface.
 
-![Dashboard Preview](https://via.placeholder.com/800x400?text=Realtime+Dashboard+Preview) *(Add your own screenshot here)*
-
 ## ✨ Features
 
 - **Real-time Data Simulation**: Automatic updates every 5 seconds with simulated CPU, memory, and request metrics

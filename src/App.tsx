@@ -32,7 +32,7 @@ function App() {
           <AreaChartComponent metric={metric} />
         </div>
         <div id="bottomBar" className="w-full mt-auto border-t bg-background p-4">
-          Footer Raw data table (optional, shows senior attention to detail)
+          Raw data table here
         </div>
       </section>
       
