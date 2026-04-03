@@ -1,14 +1,23 @@
-const MetricSelector: React.FC<{ onSelect: (metric: string) => void }> = ({ onSelect }) => {
-  return (
-    <div>
-      <label htmlFor="metric">Select Metric: </label>
-      <select id="metric" onChange={(e) => onSelect(e.target.value)}>
-        <option value="cpu">CPU Usage</option>
-        <option value="memory">Memory Usage</option>
-        <option value="requests">Request Count</option>
-      </select>
-    </div>
-  );
-};
+import type { ChangeEvent } from 'react'
+import type { DataPoint } from '@/lib/mockData'
 
-export default MetricSelector;
+type MetricSelectorProps = {
+  value: DataPoint['metric']
+  onChange: (metric: DataPoint['metric']) => void
+}
+
+export function MetricSelector({ value, onChange }: MetricSelectorProps) {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    onChange(event.target.value as DataPoint['metric'])
+  }
+
+  return (
+    <label className="flex flex-col gap-2 text-sm">
+      <select value={value} onChange={handleChange} className="rounded border px-2 py-1">
+        <option value="cpu">cpu</option>
+        <option value="memory">memory</option>
+        <option value="requests">requests</option>
+      </select>
+    </label>
+  )
+}

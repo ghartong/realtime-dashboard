@@ -1,34 +1,42 @@
 import { useState } from 'react';
 
+import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
+import { AppSidebar } from './components/app-sidebar';
+import { AreaChartComponent } from './components/AreaChart';
+
+import { useRealtimeSimulation } from './hooks/useRealtimeSimulation';
+import { useDataStore } from '@/store/useDataStore';
+import { generateMockData, type DataPoint } from '@/lib/mockData';
+
 import './App.css'
-import MetricSelector from './components/MetricSelector';
-import LineChartComponent from './components/LineChart'
 
 function App() {
-  const [metric, setMetric] = useState('cpu');
+  const [metric, setMetric] = useState<DataPoint['metric']>('cpu');
 
-  const handleMetricChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setMetric(e.target.value);
+  // Start the real-time simulation
+  useRealtimeSimulation(metric);
+
+  const handleMetricChange = (newMetric: DataPoint['metric']) => {
+    useDataStore.setState({ data: generateMockData(newMetric, 20) });
+    setMetric(newMetric);
   };
 
   return (
-    <>
-      <section id="center">
-        Metric selector (CPU/Memory/Requests), time range (1h/6h/24h)
-        <MetricSelector onSelect={handleMetricChange} />
-      </section>
+    <SidebarProvider>
+      <AppSidebar metric={metric} onMetricChange={handleMetricChange}  />
+      <SidebarTrigger>Toggle Chart</SidebarTrigger>
 
-      <section id="sidePanel">Side Panel AI anomaly summary (placeholder for Day 2)</section>
-
-      <section id="mainContent">
-        <h2>Main Content Line chart (Recharts)</h2>
+      <section id="mainContent" className='w-full'>
+        <h2>Area chart (Recharts)</h2>
         <div>
-          <LineChartComponent metric={'metric'} />
+          <AreaChartComponent metric={metric} />
+        </div>
+        <div id="bottomBar" className="w-full mt-auto border-t bg-background p-4">
+          Footer Raw data table (optional, shows senior attention to detail)
         </div>
       </section>
       
-      <section id="bottomBar">Footer Raw data table (optional, shows senior attention to detail)</section>
-    </>
+    </SidebarProvider>
   )
 }
 

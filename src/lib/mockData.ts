@@ -1,4 +1,6 @@
 // src/lib/mockData.ts
+// This generates historical mock data for the charts so they don't start empty, 
+// and also defines the DataPoint type.
 export interface DataPoint {
   timestamp: number;
   value: number;
@@ -13,5 +15,3 @@ export function generateMockData(metric: DataPoint['metric'], count = 20): DataP
     metric,
   }));
 }
-
-// For real-time: every 5 seconds, add a new point and drop oldest
