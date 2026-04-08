@@ -67,7 +67,7 @@ npm run lint
 src/
 ├── components/
 │   ├── AppSidebar.tsx       # Sidebar with metric selector
-│   ├── LineChart.tsx        # Recharts visualization
+│   ├── AreaChart.tsx        # Recharts visualization
 │   └── ui/                  # shadcn UI primitives
 ├── hooks/
 │   └── useRealtimeSimulation.ts  # Real-time data updates
@@ -111,7 +111,7 @@ These guidelines help maintain consistency and follow project patterns when usin
 - `@/*` maps to `src/*` (see `tsconfig.json`). Use this alias especially for `components/ui` imports.
 
 ### Big Picture
-- `src/App.tsx` is root component; wraps everything with `SidebarProvider`, renders `AppSidebar` and `LineChartComponent`.
+- `src/App.tsx` is root component; wraps everything with `SidebarProvider`, renders `AppSidebar` and `AreaChartComponent`.
 - `src/components/app-sidebar.tsx` glues sidebar + `MetricSelector`; callback flows metric changes up via `onMetricChange` prop.
 - `src/hooks/useRealtimeSimulation.ts` updates data every 5s through `useDataStore`.
 - `src/store/useDataStore.ts` is the single global data source for time series points (Zustand, keeps last 20 points).
@@ -123,10 +123,10 @@ These guidelines help maintain consistency and follow project patterns when usin
 - Custom UI toggle + responsive navigation lives in `src/components/ui/sidebar.tsx`.
 
 ### Data Flow Clarifications
-- `LineChartComponent` expects metric-specific DataPoint shape (currently typed `({ metric }: { metric: DataPoint })` but `App` passes `'metric'` string. Fix to pass `'cpu'|'memory'|'requests'` and/or use `useDataStore` data instead of `generateMockData` if aiming real-time.
+- `AreaChartComponent` expects metric-specific DataPoint shape (currently typed `({ metric }: { metric: DataPoint })` but `App` passes `'metric'` string. Fix to pass `'cpu'|'memory'|'requests'` and/or use `useDataStore` data instead of `generateMockData` if aiming real-time.
 
 ### Integration Points
-- `recharts` chart library in `src/components/LineChart.tsx`.
+- `recharts` chart library in `src/components/AreaChart.tsx`.
 - `zustand` state in `src/store/useDataStore.ts`.
 - shadcn component wrappers in `src/components/ui` (`button.tsx`, `sidebar.tsx`, `toggle.tsx`, etc.).
 
@@ -139,8 +139,8 @@ These guidelines help maintain consistency and follow project patterns when usin
 - Do not change the `src/components/ui/sidebar.tsx` behavior unless required for downstream side-effect logic (it contains keyboard shortcuts and cookie-based open state).
 
 ### Example Change Scope
-- Adding new metric: update `DataPoint.metric` union in `src/lib/mockData.ts`, update `MetricSelector` options, update `LineChartComponent` labeling.
-- Fix type mismatch: in `App.tsx` send `metric` state value to `LineChartComponent`, and/or change `LineChartComponent` props from `DataPoint` to `DataPoint['metric']`.
+- Adding new metric: update `DataPoint.metric` union in `src/lib/mockData.ts`, update `MetricSelector` options, update `AreaChartComponent` labeling.
+- Fix type mismatch: in `App.tsx` send `metric` state value to `AreaChartComponent`, and/or change `AreaChartComponent` props from `DataPoint` to `DataPoint['metric']`.
 
 ## 📄 License
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { AppSidebar } from '@/components/app-sidebar';
+import { AppSidebar } from '@/components/AppSidebar';
 import { AreaChartComponent } from '@/components/AreaChart';
 
 import { useRealtimeSimulation } from '@/hooks/useRealtimeSimulation';

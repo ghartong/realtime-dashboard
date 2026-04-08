@@ -30,5 +30,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "vitest.config.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/tests/setup.ts"], // so linter doesn't complain about test files, we have a tsconfig.test.json that includes these files for testing purposes
 }

@@ -3,11 +3,11 @@ import { useMemo } from 'react'
 import { useDataStore } from '@/store/useDataStore'
 import type { DataPoint } from '@/lib/mockData'
 
-type LineChartComponentProps = {
+type AreeChartComponentProps = {
   metric: DataPoint['metric']
 }
 
-export function AreaChartComponent({ metric }: LineChartComponentProps) {
+export function AreaChartComponent({ metric }: AreeChartComponentProps) {
   const allData = useDataStore((s) => s.data).map((point) => ({
     ...point,
     timestamp: new Date(point.timestamp).toLocaleTimeString(),
@@ -20,7 +20,7 @@ export function AreaChartComponent({ metric }: LineChartComponentProps) {
   )
 
   return (
-    <div style={{ width: '100%', height: 300 }}>
+    <div style={{ width: '100%', height: 300 }} data-testid="area-chart-container">
         <ResponsiveContainer>
             <AreaChart margin={{ top: 10, right: 30, left: 0, bottom: 0 }} data={series}>
             <CartesianGrid strokeDasharray="3 3" />

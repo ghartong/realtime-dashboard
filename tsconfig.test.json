@@ -1,0 +1,19 @@
+// Source - https://stackoverflow.com/a/79741959
+// Posted by Basma Khalil
+// Retrieved 2026-04-08, License - CC BY-SA 4.0
+
+{
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "lib": ["ES2020", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/tests/setup.ts"]
+}
