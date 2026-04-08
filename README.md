@@ -1,13 +1,17 @@
 ## WIP....More to come
 
-# Realtime Dashboard 🚀
+# Realtime Metrics Dashboard with AI Anomaly Detaction 🚀
 
 A sleek, real-time data visualization dashboard built with modern React and TypeScript. Watch your metrics come alive with live updates, beautiful charts, and a responsive sidebar interface.
+
+## Live Demo
+- Coming soon
 
 ## ✨ Features
 
 - **Real-time Data Simulation**: Automatic updates every 5 seconds with simulated CPU, memory, and request metrics
 - **Interactive Charts**: Powered by Recharts for smooth, responsive line charts
+- **AI-powered anomaly detection**: click "Analyze" to get instant SRE-style feedback
 - **Responsive Design**: Collapsible sidebar with shadcn UI components and Tailwind CSS
 - **State Management**: Efficient global state with Zustand, keeping the last 20 data points
 - **TypeScript**: Fully typed for reliability and developer experience
@@ -18,8 +22,17 @@ A sleek, real-time data visualization dashboard built with modern React and Type
 - **Frontend**: React 19, TypeScript, Vite
 - **Styling**: Tailwind CSS, shadcn/ui components
 - **Charts**: Recharts
-- **State**: Zustand
+- **State**: Zustand, TanStack Query
 - **Build**: Vite (ESM, fast bundling)
+- **AI Augmentation**: OpenRouter (Claude 3.5 Haiku)
+
+## Why I built This
+
+To demonstrate senior level React skills: state management, real-time data, API integration, performance optimization, and practical AI augmentation – all production grade.
+
+## Who Am I
+Glenn Hartong
+<https://glennhartong.com>
 
 ## 🚀 Getting Started
 
@@ -65,6 +78,7 @@ npm run lint
 
 ```
 src/
+├── __tests__/               # Vitest test files and setup file
 ├── components/
 │   ├── AppSidebar.tsx       # Sidebar with metric selector
 │   ├── AreaChart.tsx        # Recharts visualization
@@ -77,16 +91,6 @@ src/
 │   └── useDataStore.ts      # Zustand global state
 └── App.tsx                  # Root component
 ```
-
-## 🤝 Contributing
-
-We love contributions! Here's how to get involved:
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ### Development Tips
 
@@ -140,7 +144,6 @@ These guidelines help maintain consistency and follow project patterns when usin
 
 ### Example Change Scope
 - Adding new metric: update `DataPoint.metric` union in `src/lib/mockData.ts`, update `MetricSelector` options, update `AreaChartComponent` labeling.
-- Fix type mismatch: in `App.tsx` send `metric` state value to `AreaChartComponent`, and/or change `AreaChartComponent` props from `DataPoint` to `DataPoint['metric']`.
 
 ## 📄 License
 
