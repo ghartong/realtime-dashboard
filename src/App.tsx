@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { AreaChartComponent } from '@/components/AreaChart';
+import { DataTable } from '@/components/DataTable';
 
 import { useRealtimeSimulation } from '@/hooks/useRealtimeSimulation';
 import { useDataStore } from '@/store/useDataStore';
@@ -32,7 +33,7 @@ function App() {
           <AreaChartComponent metric={metric} />
         </div>
         <div id="bottomBar" className="w-full mt-auto border-t bg-background p-4">
-          Raw data table here
+          <DataTable />
         </div>
       </section>
       
