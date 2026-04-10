@@ -32,6 +32,7 @@ To demonstrate senior level React skills: state management, real-time data, API 
 
 ## Who Am I
 Glenn Hartong
+
 <https://glennhartong.com>
 
 ## 🚀 Getting Started
