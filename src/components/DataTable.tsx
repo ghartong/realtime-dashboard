@@ -3,7 +3,10 @@
  * Used for debugging and transparency. Data updates in real-time via Zustand store.
  * @tested src/__tests__/components/DataTable.test.tsx
  */
-import { useDataStore } from '@/store/useDataStore';
+import { useNow } from "@/hooks/useNow";
+// import { useDataStore } from '@/store/useDataStore';
+import { useFilteredData } from "@/hooks/useFilteredData";
+
 import {
   Table,
   TableBody,
@@ -11,17 +14,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ScrollArea } from '@/components/ui/scroll-area'; // optional, install with: npx shadcn@latest add scroll-area
+} from "@/components/ui/table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area"; // optional, install with: npx shadcn@latest add scroll-area
 
 export function DataTable() {
-  const data = useDataStore((state) => state.data);
-  
-  // Show last 20 entries only, most recent first
-  const recentData = [...data].reverse().slice(0, 20);
+  // const data = useDataStore((state) => state.data);
+  const now = useNow();
+  const filteredData = useFilteredData(now);
 
-  if (data.length === 0) {
+  // Show last 20 entries only, most recent first
+  const recentData = [...filteredData]
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, 20);
+
+  if (filteredData.length === 0) {
     return (
       <Card>
         <CardHeader>
@@ -39,7 +46,8 @@ export function DataTable() {
       <CardHeader>
         <CardTitle>Raw Data Feed</CardTitle>
         <p className="text-sm text-muted-foreground">
-          Last {recentData.length} of {data.length} entries (newest first)
+          Last {recentData.length} of {filteredData.length} entries (newest
+          first)
         </p>
       </CardHeader>
       <CardContent>
