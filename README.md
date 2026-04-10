@@ -5,7 +5,7 @@
 A sleek, real-time data visualization dashboard built with modern React and TypeScript. Watch your metrics come alive with live updates, beautiful charts, and a responsive sidebar interface.
 
 ## Live Demo
-- Coming soon
+- [Currently on Vercel](https://realtime-dashboard-kappa.vercel.app/)
 
 ## ✨ Features
 
